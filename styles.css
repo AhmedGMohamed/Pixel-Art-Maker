@@ -1,0 +1,91 @@
+body {
+  text-align: center;
+  background-image: url('background_image.png');
+  background-size: 100%;
+}
+
+h1 {
+  font-family: Monoton;
+  font-size: 70px;
+  margin: 0.2em;
+}
+
+h2 {
+  margin: 1em 0 0.25em;
+}
+
+h2:first-of-type {
+  margin-top: 0.5em;
+}
+
+form {
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+tr,
+td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+tr {
+  height: 20px;
+  border: 1px solid black;
+}
+
+td {
+  width: 20px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  height: 1.4em;
+  width: 3em;
+  border-radius: 5px;
+  border: none;
+  -moz-appearance: textfield;
+}
+
+input[type='submit'],
+input[type='button'] {
+  margin-top: 1.1em;
+  margin-left: 0.6em;
+  background-color: rgb(194, 219, 255);
+  font-family: cursive;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+input[type='color'] {
+  margin-top: 0.5em;
+  width: 40px;
+  height: 38px;
+  border: none;
+  border-radius: 100%;
+  background: none;
+}
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type='color']::-webkit-color-swatch {
+  border: none; /*change color of the swatch border here*/
+  border-radius: 40px;
+}
+
+h2:last-of-type {
+  margin-top: 0.3em;
+}

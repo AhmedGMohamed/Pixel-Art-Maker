@@ -391,7 +391,23 @@ function changeBackground(evt) {
     evt.target.style.backgroundColor = colorInputValue();
   }
 }
-canvas.addEventListener('click', changeBackground);
+canvas.addEventListener('mousedown', (downEvent) => {
+  changeBackground(downEvent);
+  function draw(e) {
+    mouseDragged = true;
+    changeBackground(e);
+    canvas.addEventListener('mouseup', function mouseUpDraw() {
+      console.log('fired');
+      canvas.removeEventListener('mouseup', mouseUpDraw);
+      canvas.removeEventListener('mousemove', draw);
+    });
+  }
+  let mouseDragged = false;
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', function mouseUpDraw() {
+    canvas.removeEventListener('mousemove', draw)
+  })
+});
 
 function reset() {
   // resets the colors for the table data elements if the reset button is clicked

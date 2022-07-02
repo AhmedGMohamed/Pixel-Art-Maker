@@ -64,6 +64,18 @@ a {
   box-shadow: -1px 0px 3px;
   z-index: 1;
 }
+
+#gridFormWrapper {
+}
+
+#colorPickerWrapper {
+  width: 100%;
+}
+#randomDiv {
+  width: 20px;
+  height: 20px;
+}
+
 #frame {
   display: flex;
   align-content: center;

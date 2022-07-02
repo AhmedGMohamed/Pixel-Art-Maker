@@ -93,9 +93,67 @@ function check() {
         )}px;`
       );
     }
+    function changeZoom() {
+      canvas.parentNode.addEventListener('wheel', function (e) {
+        transformTranslateValue = canvas.getAttribute('style').split('; ')[2];
+        if (e.deltaY < 0) {
+          zoomValue = parseInt(
+            canvas.getAttribute('style').split(' ')[1].split('%')[0]
+          );
+          zoomValue += 5;
+          if (
+            transformTranslateValue === undefined ||
+            transformTranslateValue === null ||
+            transformTranslateValue === NaN
+          ) {
+            canvas.setAttribute(
+              'style',
+              `zoom: ${zoomValue}%; width: ${Math.floor(
+                width * 20 + Math.ceil(width / 2) + 2
+              )}px;`
+            );
+          } else {
+            canvas.setAttribute(
+              'style',
+              `zoom: ${zoomValue}%; width: ${Math.floor(
+                width * 20 + Math.ceil(width / 2) + 2
+              )}px; ${transformTranslateValue}`
+            );
+          }
+        } else {
+          zoomValue = parseInt(
+            canvas.getAttribute('style').split(' ')[1].split('%')[0]
+          );
+          if (!(zoomValue <= 6)) {
+            zoomValue -= 5;
+          }
+          if (
+            transformTranslateValue === undefined ||
+            transformTranslateValue === null ||
+            transformTranslateValue === NaN
+          ) {
+            canvas.setAttribute(
+              'style',
+              `zoom: ${zoomValue}%; width: ${Math.floor(
+                width * 20 + Math.ceil(width / 2) + 2
+              )}px;`
+            );
+          } else {
+            canvas.setAttribute(
+              'style',
+              `zoom: ${zoomValue}%; width: ${Math.floor(
+                width * 20 + Math.ceil(width / 2) + 2
+              )}px; ${transformTranslateValue}`
+            );
+          }
+        }
+      });
+    }
     setZoom();
     canvas.appendChild(temporaryFragment);
+    changeZoom();
     moveCanvas();
+  }
   function resetGrid() {
     /* used to check if the page contains a grid, if there's one, it removes it, goes through the "check"
      * function and repeats this function then goes to the "makeGrid" function

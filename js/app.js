@@ -1,4 +1,5 @@
 const colorPickerButton = document.getElementById('colorPicker');
+const header = document.getElementById('header');
 const canvas = document.getElementById('pixelCanvas');
 const gridWidthElement = document.getElementById('inputWidth');
 const gridHeightElement = document.getElementById('inputHeight');
@@ -37,6 +38,59 @@ function check() {
       temporaryFragment.appendChild(createtr[i]); // puts the table rows into action (applies them to the grid)
     }
 
+    function setZoom() {
+      let initialZoomPercent;
+      let screenHeight = document.body.clientHeight;
+      let screenWidth = document.body.clientWidth;
+      if (height >= width) {
+        initialZoomPercent = Math.floor(
+          ((screenHeight - (header.offsetHeight + 20)) /
+            (height * 20 + Math.ceil(height / 2) + 2)) *
+            100
+        );
+        if (
+          (width * 20 + Math.ceil(width / 2) + 2) * initialZoomPercent >
+          screenWidth - (screenWidth * 0.2 + 20)
+        ) {
+          secondaryZoomPercent = Math.floor(
+            ((screenWidth - (screenWidth * 0.2 + 40)) /
+              (width * 20 + Math.ceil(width / 2) + 2)) *
+              100
+          );
+          initialZoomPercent = Math.min(
+            initialZoomPercent,
+            secondaryZoomPercent
+          );
+        }
+      } else {
+        initialZoomPercent = Math.floor(
+          ((screenWidth - (screenWidth * 0.2 + 40)) /
+            (width * 20 + Math.ceil(width / 2) + 2)) *
+            100
+        );
+        if (
+          (height * 20 + Math.ceil(height / 2) + 2) * initialZoomPercent >
+          screenHeight - (header.offsetHeight + 20)
+        ) {
+          secondaryZoomPercent = Math.floor(
+            ((screenHeight - (header.offsetHeight + 20)) /
+              (height * 20 + Math.ceil(height / 2) + 2)) *
+              100
+          );
+          initialZoomPercent = Math.min(
+            initialZoomPercent,
+            secondaryZoomPercent
+          );
+        }
+      }
+      canvas.setAttribute(
+        'style',
+        `zoom: ${initialZoomPercent}%; width: ${Math.floor(
+          width * 20 + Math.ceil(width / 2) + 2
+        )}px;`
+      );
+    }
+    setZoom();
     canvas.appendChild(temporaryFragment);
   function resetGrid() {
     /* used to check if the page contains a grid, if there's one, it removes it, goes through the "check"

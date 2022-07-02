@@ -11,6 +11,9 @@ function submitFunction(e) {
   check();
   return false;
 }
+let height = 1;
+let width = 1;
+
 function check() {
   //contains all functions in the page and runs the resetGrid() function first
   resetGrid();
@@ -92,6 +95,7 @@ function check() {
     }
     setZoom();
     canvas.appendChild(temporaryFragment);
+    moveCanvas();
   function resetGrid() {
     /* used to check if the page contains a grid, if there's one, it removes it, goes through the "check"
      * function and repeats this function then goes to the "makeGrid" function
@@ -113,7 +117,209 @@ function check() {
   }
 }
 
+function moveCanvas() {
+  let isMoving = false;
+  let x, y;
+  let rect = canvas.getBoundingClientRect();
+  canvas.parentNode.addEventListener('mousedown', function mouseDown(e) {
+    if (isBrushSelected === false) {
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+      isMoving = true;
+    } else {
+      canvas.parentNode.removeEventListener('mousedown', mouseDown);
+    }
+  });
+  canvas.parentNode.addEventListener('mousemove', function mouseMove(e) {
+    if (isBrushSelected === false) {
+      if (isMoving === true) {
+        movePath(x, y, e.clientX - rect.left, e.clientY - rect.top);
+        x = e.clientX - rect.left;
+        y = e.clientY - rect.top;
+      }
+    } else {
+      canvas.parentNode.removeEventListener('mousemove', mouseMove);
+    }
+  });
+  document.addEventListener('mouseup', function mouseUp(e) {
+    if (isBrushSelected === false) {
+      if (isMoving === true) {
+        movePath(x, y, e.clientX - rect.left, e.clientY - rect.top);
+        isMoving = false;
+      }
+    } else {
+      document.removeEventListener('mouseup', mouseUp);
+    }
+  });
+  function movePath(x1, y1, x2, y2) {
+    let styles = canvas.getAttribute('style');
+    let lastX = 0;
+    let lastY = 0;
+    if (styles.includes('transform: translate(')) {
+      let stylesArray = styles.split(' transform: translate(');
+      let coordsArray = stylesArray[1].split('px');
+      styles = stylesArray[0];
+      lastX = parseInt(coordsArray[0]);
+      lastY = parseInt(coordsArray[1].split(', ')[1]);
+    }
+    if (height >= 50) {
+      if (width >= 50) {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.5)
+              : Math.floor((x2 - x1) * 0.5))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.5)
+              : Math.floor((y2 - y1) * 0.5))
+          }px)`
+        );
+      } else if (width >= 25 && width < 50) {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.3)
+              : Math.floor((x2 - x1) * 0.3))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.5)
+              : Math.floor((y2 - y1) * 0.5))
+          }px)`
+        );
+      } else {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.15)
+              : Math.floor((x2 - x1) * 0.15))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.5)
+              : Math.floor((y2 - y1) * 0.5))
+          }px)`
+        );
+      }
+    } else if (height >= 25 && height < 50) {
+      if (width >= 50) {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.5)
+              : Math.floor((x2 - x1) * 0.5))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.3)
+              : Math.floor((y2 - y1) * 0.3))
+          }px)`
+        );
+      } else if (width >= 25 && width < 50) {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.3)
+              : Math.floor((x2 - x1) * 0.3))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.3)
+              : Math.floor((y2 - y1) * 0.3))
+          }px)`
+        );
+      } else {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.15)
+              : Math.floor((x2 - x1) * 0.15))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.3)
+              : Math.floor((y2 - y1) * 0.3))
+          }px)`
+        );
+      }
+    } else {
+      if (width >= 50) {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.5)
+              : Math.floor((x2 - x1) * 0.5))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.15)
+              : Math.floor((y2 - y1) * 0.15))
+          }px)`
+        );
+      } else if (width >= 25 && width < 50) {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.3)
+              : Math.floor((x2 - x1) * 0.3))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.15)
+              : Math.floor((y2 - y1) * 0.15))
+          }px)`
+        );
+      } else {
+        canvas.setAttribute(
+          'style',
+          `${styles} transform: translate(${
+            lastX +
+            (x2 - x1 <= 0
+              ? Math.ceil((x2 - x1) * 0.15)
+              : Math.floor((x2 - x1) * 0.15))
+          }px, ${
+            lastY +
+            (y2 - y1 <= 0
+              ? Math.ceil((y2 - y1) * 0.15)
+              : Math.floor((y2 - y1) * 0.15))
+          }px)`
+        );
+      }
+    }
+  }
+}
+
 let isBrushSelected = true;
+function SelectBrush() {
+  isBrushSelected = true;
+  canvas.setAttribute('class', 'crosshairCursor');
+  moveCanvas();
+}
+
+function SelectCursor() {
+  isBrushSelected = false;
+  moveCanvas();
+  canvas.setAttribute('class', 'moveCursor');
+}
+
 function colorInputValue() {
   // gets the input value of the color picker
   const colorValue = colorPickerButton.value;

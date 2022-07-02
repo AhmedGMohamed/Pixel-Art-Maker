@@ -1,0 +1,187 @@
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  background-size: 100%;
+}
+
+#header {
+  display: flex;
+  width: 100%;
+  background-color: rgb(40, 40, 40);
+  box-shadow: 3px 1px 3px;
+  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+a {
+  text-decoration: none;
+}
+
+#logo {
+  margin-left: 10px;
+  font-size: 30px;
+  font-family: Monoton;
+  color: white;
+}
+
+#copyright {
+  display: block;
+  font-family: sans-serif;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#github {
+  color: white;
+  text-decoration: underline;
+}
+
+#container {
+  display: flex;
+  height: calc(100% - 47px);
+}
+
+#frame,
+#sidebar {
+  flex: 1 1 auto;
+}
+
+#sidebar {
+  width: 20vw;
+  background-color: rgb(50, 50, 50);
+  box-shadow: -1px 0px 3px;
+  z-index: 1;
+}
+#frame {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 80%;
+  background-color: rgb(30, 30, 30);
+  z-index: 0;
+}
+
+#overflowWrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  max-width: 3000px;
+  max-height: 3000px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: Monoton;
+  font-size: 70px;
+  margin: 0.2em;
+}
+
+h2 {
+  margin: 1em 0 0.25em;
+}
+
+h2:first-of-type {
+  margin-top: 0.5em;
+}
+
+form {
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+tr,
+td {
+  border: 1px solid black;
+}
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  overflow: hidden;
+  margin: auto;
+  user-select: none;
+}
+
+.moveCursor {
+  cursor: move;
+}
+
+.crosshairCursor {
+  cursor: crosshair;
+}
+
+tr {
+  height: 20px;
+  border: 1px solid black;
+  padding: 0px;
+  overflow: hidden;
+}
+
+td {
+  width: 20px;
+  border: 1px solid black;
+  padding: 0px;
+  background-color: white;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  height: 1.4em;
+  width: 3em;
+  border-radius: 5px;
+  border: none;
+  -moz-appearance: textfield;
+}
+
+input[type='submit'],
+input[type='button'] {
+  margin-top: 1.1em;
+  margin-left: 0.6em;
+  background-color: rgb(194, 219, 255);
+  font-family: cursive;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+input[type='color'] {
+  margin-top: 0.5em;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 100%;
+  border: 1px solid white;
+  padding: 0px;
+  background: none;
+}
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type='color']::-webkit-color-swatch {
+  border: none; /* change color of the swatch border here */
+  border-radius: 40px;
+}
+
+h2:last-of-type {
+  margin-top: 0.3em;
+}

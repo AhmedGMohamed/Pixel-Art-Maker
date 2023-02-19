@@ -35,59 +35,73 @@
         </div>
       </div>
       <div id="sidebar">
-        <div id="gridFormWrapper">
-          <h2>Choose Grid Size</h2>
-          <form onsubmit="submitFunction(event)">
-            Grid Height:
-            <input
-              type="number"
-              id="inputHeight"
-              name="height"
-              min="1"
-              max="100"
-              value="1"
-            />
-            Grid Width:
-            <input
-              type="number"
-              id="inputWidth"
-              name="width"
-              min="1"
-              max="100"
-              value="1"
-            />
-            <input type="submit" id="submit" value="Submit" />
-          </form>
-          <input
-            type="button"
-            id="reset"
-            value="Reset Colors"
-            onclick="reset()"
-          />
-          <input
-            type="button"
-            id="cursor"
-            value="Change to Cursor"
-            onclick="SelectCursor()"
-          />
-          <input
-            type="button"
-            id="cursor"
-            value="Change to Brush"
-            onclick="SelectBrush()"
-          />
-
-          <h2>Pick A Color</h2>
-          <input type="color" id="colorPicker" />
+        <div id="gridFormWrapper" class="sidebarDiv">
+          <div class="divHeader" onclick="toggleVisibility(event)">
+            <img
+              src="images/rightArrow.png"
+              alt="Arrow"
+              width="15px"
+              height="15px"
+              class="rotatedArrow"
+            />Canvas Size
+          </div>
+          <div class="divMain">
+            <form onsubmit="submitFunction(event)">
+              <div class="textDiv">Width</div>
+              <input
+                type="number"
+                id="inputWidth"
+                name="width"
+                min="1"
+                max="100"
+                value="1"
+              />
+              <div class="textDiv">Height</div>
+              <input
+                type="number"
+                id="inputHeight"
+                name="height"
+                min="1"
+                max="100"
+                value="1"
+              />
+              <div id="submitResetButtons">
+                <input type="submit" id="submit" value="Draw Canvas" />
+                <input
+                  type="button"
+                  id="reset"
+                  value="Reset Colors"
+                  onclick="resetFunction()"
+                />
+              </div>
+            </form>
+          </div>
         </div>
-        <div id="colorPickerWrapper">
-          
-        </div>
-        <div id="randomDiv">
-
+        <div id="colorPickerWrapper" class="sidebarDiv">
+          <div class="divHeader" onclick="toggleVisibility(event)">
+            <img
+              src="images/rightArrow.png"
+              alt="Arrow"
+              width="15px"
+              height="15px"
+            />Colors & Tools
+          </div>
+          <div class="divMain hidden">
+            <div class="floatLeft">
+              <div class="textDiv">Color</div>
+              <input type="color" id="colorPicker" />
+            </div>
+            <div class="floatRight">
+            <img src="images/move.png" alt="Move Icon"
+              id="cursor" onclick="selectCursor(event)" width="35px" height="35px">
+            <img src="images/paint-brush.png" alt="Brush Icon"
+              id="brush" onclick="selectBrush(event)" width="35px" height="35px"></div>
+            <div id="fullWidth"></div>
+          </div>
         </div>
       </div>
     </div>
     <script src="js/app.js" type="application/javascript"></script>
+    <script src="js/changeDisplay.js" type="application/javascript"></script>
   </body>
 </html>

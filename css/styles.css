@@ -4,6 +4,8 @@ body {
   margin: 0px;
   width: 100%;
   height: 100%;
+  font-family: sans-serif;
+  color: rgb(177, 177, 177);
 }
 
 body {
@@ -17,7 +19,7 @@ body {
   display: flex;
   width: 100%;
   background-color: rgb(40, 40, 40);
-  box-shadow: 3px 1px 3px;
+  box-shadow: 3px 1px 3px rgb(0, 0, 0);
   text-align: left;
   align-items: center;
   justify-content: space-between;
@@ -59,21 +61,232 @@ a {
 }
 
 #sidebar {
+  user-select: none;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   width: 20vw;
-  background-color: rgb(50, 50, 50);
-  box-shadow: -1px 0px 3px;
+  background-color: rgb(30, 30, 30);
+  padding: 10px 0px;
+  box-shadow: -1px 0px 3px rgb(0, 0, 0);
   z-index: 1;
 }
 
+#sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebarDiv {
+  background-color: rgb(43, 43, 43);
+  padding-bottom: 10px;
+}
+
+div.hidden {
+  display: none !important;
+}
+
 #gridFormWrapper {
+  width: 100%;
+  z-index: 20;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+#submitResetButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  height: 3em;
+  width: 60%;
+  border-radius: 5px;
+  background-color: rgb(68, 68, 68);
+  color: #fff;
+  border: none;
+  margin-left: 10px;
+  -moz-appearance: textfield;
+}
+
+input[type='number']:focus {
+  outline: 1px solid rgb(41, 121, 255);
+}
+
+input[type='submit'],
+input[type='button'] {
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 1.1em;
+  align-self: center;
+  background-color: rgb(41, 121, 255);
+  font-family: 'Roboto', sans-serif;
+  font-size: 12pt;
+  height: 3em;
+  width: 45%;
+  min-width: 135px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  word-break: break-all;
+}
+
+#cursor {
+  padding: 5px;
+}
+
+#cursor:hover {
+  background-color: rgb(68, 68, 68);
+}
+
+#brush {
+  padding: 5px;
+}
+#brush:hover {
+  background-color: rgb(68, 68, 68);
+}
+
+.textDiv {
+  text-align: left;
+  margin: 10px 10px;
+  font-family: sans-serif;
+  font-weight: 600;
 }
 
 #colorPickerWrapper {
   width: 100%;
+  z-index: 10;
 }
-#randomDiv {
-  width: 20px;
-  height: 20px;
+
+input[type='color'] {
+  margin-top: 0.5em;
+  width: 90%;
+  min-width: 135px;
+  height: 3em;
+  border: none;
+  border-radius: 6px;
+  padding: 0px;
+  background: none;
+}
+
+input[type='color']:focus {
+  outline: 1px solid rgb(41, 121, 255);
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type='color']::-webkit-color-swatch {
+  border: none; /* change color of the swatch border here */
+  border-radius: 6px;
+}
+
+#colorPickerWrapper > .divMain {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.floatLeft {
+  width: 50%;
+  min-width: 145px;
+}
+
+.floatRight {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  width: 50%;
+}
+
+.divHeader {
+  display: flex;
+  font-size: 13pt;
+  font-weight: bold;
+  color: #fff;
+  text-align: left;
+  align-items: center;
+  padding: 10px 0px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  background-color: rgb(30, 30, 30);
+}
+
+.divHeader:hover {
+  cursor: pointer;
+}
+
+img {
+  margin: 0px 10px;
+}
+
+@-webkit-keyframes rotateArrowDown {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@-webkit-keyframes rotateArrowUp {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateArrowDown {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes rotateArrowUp {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.rotatedArrow {
+  animation-name: rotateArrowDown;
+  animation-duration: 0.01s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: rotateArrowDown;
+  -webkit-animation-duration: 0.01s;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.normalArrow {
+  animation-name: rotateArrowUp;
+  animation-duration: 0.01s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: rotateArrowUp;
+  -webkit-animation-duration: 0.01s;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
 }
 
 #frame {
@@ -87,9 +300,6 @@ a {
 }
 
 #overflowWrapper {
-  display: flex;
-  justify-content: center;
-  align-content: center;
   max-width: 3000px;
   max-height: 3000px;
   height: 100%;
@@ -103,23 +313,11 @@ h1 {
   margin: 0.2em;
 }
 
-h2 {
-  margin: 1em 0 0.25em;
-}
-
-h2:first-of-type {
-  margin-top: 0.5em;
-}
-
-form {
-  display: inline-block;
-  font-family: sans-serif;
-  font-weight: 600;
-}
-
 tr,
 td {
   border: 1px solid black;
+  height: 20px;
+  padding: 0px;
 }
 
 table {
@@ -139,61 +337,15 @@ table {
 }
 
 tr {
-  height: 20px;
-  border: 1px solid black;
-  padding: 0px;
   overflow: hidden;
+  border: 1px solid black;
+  height: 20px;
+  padding: 0px;
 }
 
 td {
-  width: 20px;
-  border: 1px solid black;
-  padding: 0px;
   background-color: white;
-}
-
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type='number'] {
-  height: 1.4em;
-  width: 3em;
-  border-radius: 5px;
-  border: none;
-  -moz-appearance: textfield;
-}
-
-input[type='submit'],
-input[type='button'] {
-  margin-top: 1.1em;
-  margin-left: 0.6em;
-  background-color: rgb(194, 219, 255);
-  font-family: cursive;
-  font-weight: bold;
-  border-radius: 8px;
-}
-
-input[type='color'] {
-  margin-top: 0.5em;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 100%;
-  border: 1px solid white;
+  border: 1px solid black;
+  height: 20px;
   padding: 0px;
-  background: none;
-}
-input[type='color']::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-input[type='color']::-webkit-color-swatch {
-  border: none; /* change color of the swatch border here */
-  border-radius: 40px;
-}
-
-h2:last-of-type {
-  margin-top: 0.3em;
 }

@@ -366,14 +366,20 @@ function moveCanvas() {
 }
 
 let isBrushSelected = true;
-function SelectBrush() {
+function selectBrush(event) {
   isBrushSelected = true;
+  event.target.style.backgroundColor = "rgb(68, 68, 68)"
+  console.log(event.target.previousElementSibling);
+  event.target.previousElementSibling.style = ""
   canvas.setAttribute('class', 'crosshairCursor');
   moveCanvas();
 }
 
-function SelectCursor() {
+function selectCursor(event) {
   isBrushSelected = false;
+  event.target.style.backgroundColor = 'rgb(68, 68, 68)';
+  console.log(event.target.nextElementSibling);
+  event.target.nextElementSibling.style = "";
   moveCanvas();
   canvas.setAttribute('class', 'moveCursor');
 }
@@ -409,7 +415,7 @@ canvas.addEventListener('mousedown', (downEvent) => {
   })
 });
 
-function reset() {
+function resetFunction() {
   // resets the colors for the table data elements if the reset button is clicked
   const tdElements = document.getElementsByClassName('tdElements');
   if (tdElements.length > 0) {
